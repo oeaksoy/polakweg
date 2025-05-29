@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delft Student Dorms | Clean, Safe & Decent</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .hero-image {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 80vh;
+        }
+        
+        .room-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .testimonial-card {
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: scale(1.03);
+        }
+        
+        .map-container {
+            height: 400px;
+            width: 100%;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-home text-blue-600 text-2xl mr-2"></i>
+                        <span class="text-xl font-bold text-blue-600">Delft Student Dorms</span>
+                    </div>
+                </div>
+                <div class="hidden md:ml-6 md:flex md:items-center md:space-x-8">
+                    <a href="#home" class="text-gray-900 hover:text-blue-600 px-3 py-2 text-sm font-medium">Home</a>
+                    <a href="#rooms" class="text-gray-900 hover:text-blue-600 px-3 py-2 text-sm font-medium">Rooms</a>
+                    <a href="#amenities" class="text-gray-900 hover:text-blue-600 px-3 py-2 text-sm font-medium">Amenities</a>
+                    <a href="#testimonials" class="text-gray-900 hover:text-blue-600 px-3 py-2 text-sm font-medium">Testimonials</a>
+                    <a href="#contact" class="text-gray-900 hover:text-blue-600 px-3 py-2 text-sm font-medium">Contact</a>
+                    <a href="#apply" class="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition duration-300">Apply Now</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-gray-500 hover:text-gray-900 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="block px-3 py-2 text-base font-medium text-gray-900 hover:text-blue-600">Home</a>
+                <a href="#rooms" class="block px-3 py-2 text-base font-medium text-gray-900 hover:text-blue-600">Rooms</a>
+                <a href="#amenities" class="block px-3 py-2 text-base font-medium text-gray-900 hover:text-blue-600">Amenities</a>
+                <a href="#testimonials" class="block px-3 py-2 text-base font-medium text-gray-900 hover:text-blue-600">Testimonials</a>
+                <a href="#contact" class="block px-3 py-2 text-base font-medium text-gray-900 hover:text-blue-600">Contact</a>
+                <a href="#apply" class="block px-3 py-2 text-base font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700">Apply Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-image flex items-center justify-center text-white fade-in">
+        <div class="text-center px-4">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">Your Home Away From Home</h1>
+            <p class="text-xl md:text-2xl mb-8">Clean • Safe • Decent</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#rooms" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full transition duration-300">View Rooms</a>
+                <a href="#contact" class="bg-transparent hover:bg-white hover:text-blue-600 text-white font-bold py-3 px-6 border-2 border-white rounded-full transition duration-300">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-base text-blue-600 font-semibold tracking-wide uppercase">About Us</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    Comfortable Living for TUDelft Students
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+                    We provide quality accommodation for both single students and those with families, located just minutes from TUDelft campus.
+                </p>
+            </div>
+
+            <div class="mt-10">
+                <div class="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <div class="flex items-center justify-center h-12 w-12 rounded-md bg-blue-500 text-white">
+                                <i class="fas fa-broom"></i>
+                            </div>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-lg leading-6 font-medium text-gray-900">Clean</h3>
+                            <p class="mt-2 text-base text-gray-500">
+                                Our facilities are cleaned daily with strict hygiene protocols to ensure a healthy living environment.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <div class="flex items-center justify-center h-12 w-12 rounded-md bg-blue-500 text-white">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-lg leading-6 font-medium text-gray-900">Safe</h3>
+                            <p class="mt-2 text-base text-gray-500">
+                                24/7 security, CCTV surveillance, and secure access systems provide peace of mind for all residents.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <div class="flex items-center justify-center h-12 w-12 rounded-md bg-blue-500 text-white">
+                                <i class="fas fa-home"></i>
+                            </div>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-lg leading-6 font-medium text-gray-900">Decent</h3>
+                            <p class="mt-2 text-base text-gray-500">
+                                Well-maintained, modern facilities designed for comfort and functionality to support your studies.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rooms Section -->
+    <section id="rooms" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-base text-blue-600 font-semibold tracking-wide uppercase">Accommodation</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    Our Room Options
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
+                    Choose the perfect living space for your needs
+                </p>
+            </div>
+
+            <div class="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+                <!-- Single Room -->
+                <div class="room-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                    <img class="w-full h-48 object-cover" src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Single Room">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-900">Single Room</h3>
+                        <p class="mt-2 text-gray-600">
+                            Perfect for individual students with private study space and shared kitchen facilities.
+                        </p>
+                        <div class="mt-4 flex items-center">
+                            <span class="text-blue-600 font-bold text-lg">€450-€550</span>
+                            <span class="ml-2 text-sm text-gray-500">/month</span>
+                        </div>
+                        <div class="mt-4">
+                            <ul class="grid grid-cols-2 gap-2 text-sm text-gray-600">
+                                <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> 12-15 m²</li>
+                                <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Shared kitchen</li>
+                                <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> WiFi included</li>
+                                <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Study desk</li>
+                            </ul>
+                        </div>
+                        <button class="mt-6 w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition duration-300">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Studio Apartment -->
+                <div class="room-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                    <img class="w-full h-48 object-cover" src="https://images.unsplash.com/photo-1556911220-bff31c812dba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1468&q=80" alt="Studio Apartment">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-900">Studio Apartment</h3>
+                        <p class="mt-2 text-gray-600">
+                            Self-contained living space ideal for students who prefer more privacy and independence.
+                        </p>
+                        <div class="mt-4 flex items-center">
+                            <span class="text-blue-600 font-bold text-lg">€650-€750</span>
+                            <span class="ml-2 text-sm text-gray-500">/month</span>
+                        </div>
+                        <div class="mt-4">
+                            <ul class="grid grid-cols-2 gap-2 text-sm text-gray-600">
+                                <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> 25-30 m²</li>
+                                <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Private kitchen</li>
+                                <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> WiFi included</li>
+                                <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Private bathroom</li>
+                            </ul>
+                        </div>
+                        <button class="mt-6 w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition duration-300">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Family Apartment -->
+                <div class="room-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300">
+                    <img class="w-full h-48 object-cover" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Family Apartment">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-900">1-Bedroom Family Apartment</h3>
+                        <p class="mt-2 text-gray-600">
+                            Spacious accommodation for students with families, featuring separate living and sleeping areas.
+                        </p>
+                        <div class="mt-4 flex items-center">
+                            <span class="text-blue-600 font-bold text-lg">€850-€950</span>
+                            <span class="ml-2 text-sm text-gray-500">/month</span>
+                        </div>
+                        <div class="mt-4">
+                            <ul class="grid grid-cols-2 gap-2 text-sm text-gray-600">
+                                <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> 40-45 m²</li>
+                                <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Full kitchen</li>
+                                <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> WiFi included</li>
+                                <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Child-friendly</li>
+                            </ul>
+                        </div>
+                        <button class="mt-6 w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition duration-300">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Amenities Section -->
+    <section id="amenities" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-base text-blue-600 font-semibold tracking-wide uppercase">Facilities</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    Our Amenities
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
+                    Everything you need for comfortable student living
+                </p>
+            </div>
+
+            <div class="mt-10 grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+                <div class="text-center">
+                    <div class="flex items-center justify-center h-16 w-16 mx-auto rounded-full bg-blue-100 text-blue-600">
+                        <i class="fas fa-wifi text-xl"></i>
+                    </div>
+                    <h3 class="mt-4 text-sm font-medium text-gray-900">High-Speed WiFi</h3>
+                </div>
+
+                <div class="text-center">
+                    <div class="flex items-center justify-center h-16 w-16 mx-auto rounded-full bg-blue-100 text-blue-600">
+                        <i class="fas fa-utensils text-xl"></i>
+                    </div>
+                    <h3 class="mt-4 text-sm font-medium text-gray-900">Shared Kitchens</h3>
+                </div>
+
+                <div class="text-center">
+                    <div class="flex items-center justify-center h-16 w-16 mx-auto rounded-full bg-blue-100 text-blue-600">
+                        <i class="fas fa-bicycle text-xl"></i>
+                    </div>
+                    <h3 class="mt-4 text-sm font-medium text-gray-900">Bicycle Storage</h3>
+                </div>
+
+                <div class="text-center">
+                    <div class="flex items-center justify-center h-16 w-16 mx-auto rounded-full bg-blue-100 text-blue-600">
+                        <i class="fas fa-tshirt text-xl"></i>
+                    </div>
+                    <h3 class="mt-4 text-sm font-medium text-gray-900">Laundry Facilities</h3>
+                </div>
+
+                <div class="text-center">
+                    <div class="flex items-center justify-center h-16 w-16 mx-auto rounded-full bg-blue-100 text-blue-600">
+                        <i class="fas fa-parking text-xl"></i>
+                    </div>
+                    <h3 class="mt-4 text-sm font-medium text-gray-900">Parking Space</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-8 items-center">
+                <div class="mb-8 lg:mb-0">
+                    <h2 class="text-base text-blue-600 font-semibold tracking-wide uppercase">Location</h2>
+                    <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                        Prime Location Near TUDelft
+                    </p>
+                    <p class="mt-4 text-lg text-gray-500">
+                        Our dormitory is conveniently located just a 10-minute bike ride from TUDelft campus, with excellent public transport connections to the city center and other universities.
+                    </p>
+                    <div class="mt-6">
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <div class="flex-shrink-0">
+                                    <div class="flex items-center justify-center h-8 w-8 rounded-full bg-blue-100 text-blue-600">
+                                        <i class="fas fa-bicycle"></i>
+                                    </div>
+                                </div>
+                                <p class="ml-3 text-base text-gray-700">10 minutes to TUDelft by bicycle</p>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="flex-shrink-0">
+                                    <div class="flex items-center justify-center h-8 w-8 rounded-full bg-blue-100 text-blue-600">
+                                        <i class="fas fa-bus"></i>
+                                    </div>
+                                </div>
+                                <p class="ml-3 text-base text-gray-700">Bus stop 100m away with direct routes to campus</p>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="flex-shrink-0">
+                                    <div class="flex items-center justify-center h-8 w-8 rounded-full bg-blue-100 text-blue-600">
+                                        <i class="fas fa-shopping-basket"></i>
+                                    </div>
+                                </div>
+                                <p class="ml-3 text-base text-gray-700">Supermarket, cafes and restaurants within walking distance</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="map-container rounded-lg shadow-lg overflow-hidden">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2452.891187340198!2d4.373315315790803!3d52.01117997972676!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c5b58d8f5b5b0d%3A0x7e8a9d3b3b3b3b3b!2sTU%20Delft!5e0!3m2!1sen!2snl!4v1620000000000!5m2!1sen!2snl" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-base text-blue-600 font-semibold tracking-wide uppercase">Testimonials</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    What Our Residents Say
+                </p>
+            </div>
+
+            <div class="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+                <div class="testimonial-card bg-gray-50 p-6 rounded-lg shadow-sm">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0">
+                            <img class="h-10 w-10 rounded-full" src="https://randomuser.me/api/portraits/women/32.jpg" alt="Anna">
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-sm font-medium text-gray-900">Anna K.</h3>
+                            <p class="text-sm text-gray-500">Computer Science, TUDelft</p>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <p class="text-gray-600 italic">
+                            "The single room is perfect for my needs - clean, quiet, and with great WiFi for studying. The location can't be beat for getting to campus quickly."
+                        </p>
+                    </div>
+                    <div class="mt-4 flex">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                </div>
+
+                <div class="testimonial-card bg-gray-50 p-6 rounded-lg shadow-sm">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0">
+                            <img class="h-10 w-10 rounded-full" src="https://randomuser.me/api/portraits/men/45.jpg" alt="Mark">
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-sm font-medium text-gray-900">Mark T.</h3>
+                            <p class="text-sm text-gray-500">Architecture, TUDelft</p>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <p class="text-gray-600 italic">
+                            "As an international student, I was nervous about finding good accommodation. The studio apartment is exactly what I needed - safe, comfortable, and with all the essentials."
+                        </p>
+                    </div>
+                    <div class="mt-4 flex">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                </div>
+
+                <div class="testimonial-card bg-gray-50 p-6 rounded-lg shadow-sm">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0">
+                            <img class="h-10 w-10 rounded-full" src="https://randomuser.me/api/portraits/women/68.jpg" alt="Sarah">
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-sm font-medium text-gray-900">Sarah & David</h3>
+                            <p class="text-sm text-gray-500">PhD Students with child</p>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <p class="text-gray-600 italic">
+                            "The family apartment has been perfect for us and our toddler. The management is very responsive to any issues, and we love the nearby park for our child to play."
+                        </p>
+                    </div>
+                    <div class="mt-4 flex">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star-half-alt text-yellow-400"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="apply" class="bg-blue-700">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
+            <h2 class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+                <span class="block">Ready to find your new home?</span>
+                <span class="block text-blue-200">Apply now for the 2023/24 academic year.</span>
+            </h2>
+            <div class="mt-8 flex lg:mt-0 lg:flex-shrink-0">
+                <div class="inline-flex rounded-md shadow">
+                    <a href="#" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-blue-600 bg-white hover:bg-blue-50 transition duration-300">
+                        Apply Online
+                    </a>
+                </div>
+                <div class="ml-3 inline-flex rounded-md shadow">
+                    <a href="#contact" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 bg-opacity-60 hover:bg-opacity-70 transition duration-300">
+                        Contact Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-8">
+                <div class="mb-8 lg:mb-0">
+                    <h2 class="text-base text-blue-600 font-semibold tracking-wide uppercase">Contact Us</h2>
+                    <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                        Get In Touch
+                    </p>
+                    <p class="mt-4 text-lg text-gray-500">
+                        Have questions about our accommodation? Want to schedule a viewing? Our team is happy to help.
+                    </p>
+                    <div class="mt-8">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-10 w-10 rounded-md bg-blue-100 text-blue-600">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-sm font-medium text-gray-900">Address</h3>
+                                <p class="mt-1 text-sm text-gray-500">Studentenstraat 42, 2628 Delft, Netherlands</p>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex items-start">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-10 w-10 rounded-md bg-blue-100 text-blue-600">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-sm font-medium text-gray-900">Phone</h3>
+                                <p class="mt-1 text-sm text-gray-500">+31 15 212 3456</p>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex items-start">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-10 w-10 rounded-md bg-blue-100 text-blue-600">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-sm font-medium text-gray-900">Email</h3>
+                                <p class="mt-1 text-sm text-gray-500">info@delftstudentdorms.nl</p>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex items-start">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-10 w-10 rounded-md bg-blue-100 text-blue-600">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-sm font-medium text-gray-900">Office Hours</h3>
+                                <p class="mt-1 text-sm text-gray-500">Monday-Friday: 9:00-17:00</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <form id="contactForm" class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
+                            <div class="mt-1">
+                                <input type="text" name="name" id="name" autocomplete="name" required class="py-3 px-4 block w-full shadow-sm focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+                            <div class="mt-1">
+                                <input type="email" name="email" id="email" autocomplete="email" required class="py-3 px-4 block w-full shadow-sm focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-sm font-medium text-gray-700">Phone Number</label>
+                            <div class="mt-1">
+                                <input type="tel" name="phone" id="phone" autocomplete="tel" class="py-3 px-4 block w-full shadow-sm focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="subject" class="block text-sm font-medium text-gray-700">Subject</label>
+                            <div class="mt-1">
+                                <select id="subject" name="subject" class="py-3 px-4 block w-full shadow-sm focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md">
+                                    <option>General Inquiry</option>
+                                    <option>Room Availability</option>
+                                    <option>Viewing Appointment</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+                            <div class="mt-1">
+                                <textarea id="message" name="message" rows="4" class="py-3 px-4 block w-full shadow-sm focus:ring-blue-500 focus:border-blue-500 border-gray-300 rounded-md"></textarea>
+                            </div>
+                        </div>
+                        <div>
+                            <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-300">
+                                Send Message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="col-span-2">
+                    <h3 class="text-white text-lg font-semibold mb-4">Delft Student Dorms</h3>
+                    <p class="text-gray-300 text-sm">
+                        Providing clean, safe and decent accommodation for TUDelft students since 2010. Our mission is to create a supportive living environment that enhances your university experience.
+                    </p>
+                    <div class="mt-4 flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-white text-sm font-semibold tracking-wider uppercase mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-300 hover:text-white text-sm">Home</a></li>
+                        <li><a href="#rooms" class="text-gray-300 hover:text-white text-sm">Rooms</a></li>
+                        <li><a href="#amenities" class="text-gray-300 hover:text-white text-sm">Amenities</a></li>
+                        <li><a href="#testimonials" class="text-gray-300 hover:text-white text-sm">Testimonials</a></li>
+                        <li><a href="#contact" class="text-gray-300 hover:text-white text-sm">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white text-sm font-semibold tracking-wider uppercase mb-4">Legal</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-white text-sm">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white text-sm">Terms of Service</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white text-sm">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-700">
+                <p class="text-gray-400 text-sm text-center">
+                    &copy; 2023 Delft Student Dorms. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            this.reset();
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+<p style="border-radius: 8px; text-align: center; font-size: 12px; color: #fff; margin-top: 16px;position: fixed; left: 8px; bottom: 8px; z-index: 10; background: rgba(0, 0, 0, 0.8); padding: 4px 8px;">Made with <img src="https://enzostvs-deepsite.hf.space/logo.svg" alt="DeepSite Logo" style="width: 16px; height: 16px; vertical-align: middle;display:inline-block;margin-right:3px;filter:brightness(0) invert(1);"><a href="https://enzostvs-deepsite.hf.space" style="color: #fff;text-decoration: underline;" target="_blank" >DeepSite</a> - 🧬 <a href="https://enzostvs-deepsite.hf.space?remix=oeaksoy/polakweg" style="color: #fff;text-decoration: underline;" target="_blank" >Remix</a></p></body>
+</html>
