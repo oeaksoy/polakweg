@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Details | Delft Student Dorms</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .room-gallery {
+            height: 500px;
+        }
+        
+        @media (max-width: 768px) {
+            .room-gallery {
+                height: 300px;
+            }
+        }
+        
+        .amenity-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .amenity-icon:hover {
+            transform: scale(1.1);
+        }
+        
+        .image-slider {
+            scroll-behavior: smooth;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-home text-blue-600 text-2xl mr-2"></i>
+                        <span class="text-xl font-bold text-blue-600">Delft Student Dorms</span>
+                    </div>
+                </div>
+                <div class="hidden md:ml-6 md:flex md:items-center md:space-x-8">
+                    <a href="index.html" class="text-gray-900 hover:text-blue-600 px-3 py-2 text-sm font-medium">Home</a>
+                    <a href="index.html#rooms" class="text-gray-900 hover:text-blue-600 px-3 py-2 text-sm font-medium">Rooms</a>
+                    <a href="index.html#amenities" class="text-gray-900 hover:text-blue-600 px-3 py-2 text-sm font-medium">Amenities</a>
+                    <a href="index.html#contact" class="text-gray-900 hover:text-blue-600 px-3 py-2 text-sm font-medium">Contact</a>
+                    <a href="index.html#apply" class="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition duration-300">Apply Now</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-gray-500 hover:text-gray-900 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="index.html" class="block px-3 py-2 text-base font-medium text-gray-900 hover:text-blue-600">Home</a>
+                <a href="index.html#rooms" class="block px-3 py-2 text-base font-medium text-gray-900 hover:text-blue-600">Rooms</a>
+                <a href="index.html#amenities" class="block px-3 py-2 text-base font-medium text-gray-900 hover:text-blue-600">Amenities</a>
+                <a href="index.html#contact" class="block px-3 py-2 text-base font-medium text-gray-900 hover:text-blue-600">Contact</a>
+                <a href="index.html#apply" class="block px-3 py-2 text-base font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700">Apply Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Room Details Section -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <!-- Room Header -->
+        <div class="text-center mb-12 fade-in">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Premium Studio Apartment</h1>
+            <div class="flex justify-center items-center">
+                <div class="flex items-center mr-6">
+                    <i class="fas fa-ruler-combined text-blue-500 mr-2"></i>
+                    <span class="text-gray-700">25-30 m²</span>
+                </div>
+                <div class="flex items-center mr-6">
+                    <i class="fas fa-bed text-blue-500 mr-2"></i>
+                    <span class="text-gray-700">1 Bed</span>
+                </div>
+                <div class="flex items-center">
+                    <i class="fas fa-euro-sign text-blue-500 mr-2"></i>
+                    <span class="text-gray-700">€650-€750/month</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Image Gallery with Thumbnails -->
+        <div class="mb-12">
+            <div class="room-gallery relative rounded-xl overflow-hidden mb-4 shadow-lg">
+                <!-- Main Image -->
+                <img id="main-image" src="https://images.unsplash.com/photo-1556911220-bff31c812dba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1468&q=80" 
+                     alt="Studio Apartment" class="w-full h-full object-cover transition-opacity duration-300">
+                
+                <!-- Navigation Arrows -->
+                <button id="prev-btn" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 text-gray-800 p-2 rounded-full shadow-md hover:bg-opacity-100 transition duration-300">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button id="next-btn" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 text-gray-800 p-2 rounded-full shadow-md hover:bg-opacity-100 transition duration-300">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            
+            <!-- Thumbnail Navigation -->
+            <div class="image-slider flex space-x-2 overflow-x-auto pb-2">
+                <button class="thumbnail-btn flex-shrink-0 w-24 h-16 rounded overflow-hidden border-2 border-transparent hover:border-blue-500 focus:outline-none focus:border-blue-500 transition duration-200">
+                    <img src="https://images.unsplash.com/photo-1556911220-bff31c812dba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1468&q=80" 
+                         alt="Studio view" class="w-full h-full object-cover">
+                </button>
+                <button class="thumbnail-btn flex-shrink-0 w-24 h-16 rounded overflow-hidden border-2 border-transparent hover:border-blue-500 focus:outline-none focus:border-blue-500 transition duration-200">
+                    <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" 
+                         alt="Kitchen area" class="w-full h-full object-cover">
+                </button>
+                <button class="thumbnail-btn flex-shrink-0 w-24 h-16 rounded overflow-hidden border-2 border-transparent hover:border-blue-500 focus:outline-none focus:border-blue-500 transition duration-200">
+                    <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ce1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80" 
+                         alt="Bed area" class="w-full h-full object-cover">
+                </button>
+                <button class="thumbnail-btn flex-shrink-0 w-24 h-16 rounded overflow-hidden border-2 border-transparent hover:border-blue-500 focus:outline-none focus:border-blue-500 transition duration-200">
+                    <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80" 
+                         alt="Bathroom" class="w-full h-full object-cover">
+                </button>
+                <button class="thumbnail-btn flex-shrink-0 w-24 h-16 rounded overflow-hidden border-2 border-transparent hover:border-blue-500 focus:outline-none focus:border-blue-500 transition duration-200">
+                    <img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Study area" class="w-full h-full object-cover">
+                </button>
+            </div>
+        </div>
+
+        <!-- Room Details Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+            <!-- Main Description -->
+            <div class="lg:col-span-2 bg-white p-6 rounded-xl shadow-sm">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">Description</h2>
+                <p class="text-gray-700 mb-6">
+                    Our premium studio apartments offer the perfect balance of privacy and functionality for students who value independence. 
+                    Each unit features a fully-equipped kitchenette, comfortable sleeping area, dedicated study space, and private bathroom.
+                </p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2">Features</h3>
+                        <ul class="space-y-2 text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>Private kitchen with refrigerator and stove</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>Spacious wardrobe and storage solutions</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>Ergonomic study desk and chair</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>Comfortable single bed (90x200cm)</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2">Included Services</h3>
+                        <ul class="space-y-2 text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>High-speed WiFi (100Mbps)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>Utilities (water, electricity, heating)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>Bi-weekly cleaning of common areas</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>24/7 maintenance support</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-blue-50 p-4 rounded-lg border border-blue-100">
+                    <h3 class="text-lg font-semibold text-blue-800 mb-2">Availability</h3>
+                    <p class="text-blue-700 mb-2">
+                        <i class="fas fa-calendar-alt mr-2"></i> Next available from: September 1, 2023
+                    </p>
+                    <p class="text-blue-700">
+                        <i class="fas fa-clock mr-2"></i> Minimum stay: 6 months
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Booking & Amenities -->
+            <div class="space-y-6">
+                <!-- Pricing Card -->
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Pricing</h2>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-700">Monthly rent</span>
+                            <span class="font-semibold">€700</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-700">Deposit</span>
+                            <span class="font-semibold">€1,400</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-700">Administration fee</span>
+                            <span class="font-semibold">€150</span>
+                        </div>
+                        <div class="border-t border-gray-200 pt-4 mt-4">
+                            <div class="flex justify-between items-center">
+                                <span class="font-semibold">Total first payment</span>
+                                <span class="text-blue-600 font-bold">€2,250</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="mt-6 w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-4 rounded-md transition duration-300">
+                        Book This Room
+                    </button>
+                </div>
+                
+                <!-- Amenities Card -->
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Amenities</h2>
+                    <div class="grid grid-cols-3 gap-4">
+                        <div class="amenity-icon text-center p-2">
+                            <div class="flex items-center justify-center h-12 w-12 mx-auto rounded-full bg-blue-100 text-blue-600 mb-2">
+                                <i class="fas fa-wifi"></i>
+                            </div>
+                            <span class="text-xs text-gray-700">WiFi</span>
+                        </div>
+                        <div class="amenity-icon text-center p-2">
+                            <div class="flex items-center justify-center h-12 w-12 mx-auto rounded-full bg-blue-100 text-blue-600 mb-2">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                            <span class="text-xs text-gray-700">Kitchen</span>
+                        </div>
+                        <div class="amenity-icon text-center p-2">
+                            <div class="flex items-center justify-center h-12 w-12 mx-auto rounded-full bg-blue-100 text-blue-600 mb-2">
+                                <i class="fas fa-shower"></i>
+                            </div>
+                            <span class="text-xs text-gray-700">Shower</span>
+                        </div>
+                        <div class="amenity-icon text-center p-2">
+                            <div class="flex items-center justify-center h-12 w-12 mx-auto rounded-full bg-blue-100 text-blue-600 mb-2">
+                                <i class="fas fa-tv"></i>
+                            </div>
+                            <span class="text-xs text-gray-700">TV Ready</span>
+                        </div>
+                        <div class="amenity-icon text-center p-2">
+                            <div class="flex items-center justify-center h-12 w-12 mx-auto rounded-full bg-blue-100 text-blue-600 mb-2">
+                                <i class="fas fa-thermometer-half"></i>
+                            </div>
+                            <span class="text-xs text-gray-700">Heating</span>
+                        </div>
+                        <div class="amenity-icon text-center p-2">
+                            <div class="flex items-center justify-center h-12 w-12 mx-auto rounded-full bg-blue-100 text-blue-600 mb-2">
+                                <i class="fas fa-fan"></i>
+                            </div>
+                            <span class="text-xs text-gray-700">Ventilation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Virtual Tour & Map -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            <div class="bg-white p-6 rounded-xl shadow-sm">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">Virtual Tour</h2>
+                <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden">
+                    <iframe class="w-full h-64 md:h-80" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Virtual Tour" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <p class="mt-4 text-gray-700">
+                    Take a 360° virtual tour of this studio apartment to explore every corner before you book.
+                </p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-sm">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">Location</h2>
+                <div class="h-64 md:h-80 rounded-lg overflow-hidden">
+                    <iframe class="w-full h-full" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2452.891187340198!2d4.373315315790803!3d52.01117997972676!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c5b58d8f5b5b0d%3A0x7e8a9d3b3b3b3b3b!2sTU%20Delft!5e0!3m2!1sen!2snl!4v1620000000000!5m2!1sen!2snl" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+                <p class="mt-4 text-gray-700">
+                    Located just 1.2km from TUDelft campus with excellent public transport connections.
+                </p>
+            </div>
+        </div>
+
+        <!-- Similar Rooms -->
+        <div class="mb-12">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">You Might Also Like</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Single Room Card -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md transition duration-300 hover:shadow-lg">
+                    <img class="w-full h-48 object-cover" src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Single Room">
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-gray-900">Single Room</h3>
+                        <div class="mt-2 flex items-center">
+                            <span class="text-blue-600 font-bold">€450-€550</span>
+                            <span class="ml-2 text-sm text-gray-500">/month</span>
+                        </div>
+                        <button class="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition duration-300">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Family Apartment Card -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md transition duration-300 hover:shadow-lg">
+                    <img class="w-full h-48 object-cover" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Family Apartment">
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-gray-900">Family Apartment</h3>
+                        <div class="mt-2 flex items-center">
+                            <span class="text-blue-600 font-bold">€850-€950</span>
+                            <span class="ml-2 text-sm text-gray-500">/month</span>
+                        </div>
+                        <button class="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition duration-300">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Shared Apartment Card -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md transition duration-300 hover:shadow-lg">
+                    <img class="w-full h-48 object-cover" src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Shared Apartment">
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-gray-900">Shared Apartment</h3>
+                        <div class="mt-2 flex items-center">
+                            <span class="text-blue-600 font-bold">€350-€450</span>
+                            <span class="ml-2 text-sm text-gray-500">/month</span>
+                        </div>
+                        <button class="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition duration-300">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="col-span-2">
+                    <h3 class="text-white text-lg font-semibold mb-4">Delft Student Dorms</h3>
+                    <p class="text-gray-300 text-sm">
+                        Providing clean, safe and decent accommodation for TUDelft students since 2010. Our mission is to create a supportive living environment that enhances your university experience.
+                    </p>
+                    <div class="mt-4 flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-white text-sm font-semibold tracking-wider uppercase mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-300 hover:text-white text-sm">Home</a></li>
+                        <li><a href="index.html#rooms" class="text-gray-300 hover:text-white text-sm">Rooms</a></li>
+                        <li><a href="index.html#amenities" class="text-gray-300 hover:text-white text-sm">Amenities</a></li>
+                        <li><a href="index.html#contact" class="text-gray-300 hover:text-white text-sm">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white text-sm font-semibold tracking-wider uppercase mb-4">Legal</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-white text-sm">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white text-sm">Terms of Service</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white text-sm">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-700">
+                <p class="text-gray-400 text-sm text-center">
+                    &copy; 2023 Delft Student Dorms. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+<script>
+    // Mobile menu toggle
+    document.getElementById('mobile-menu-button').addEventListener('click', function() {
+        const menu = document.getElementById('mobile-menu');
+        menu.classList.toggle('hidden');
+    });
+
+    // Image gallery functionality
+    const images = [
+        'https://images.unsplash.com/photo-1556911220-bff31c812dba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1468&q=80',
+        'https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80',
+        'https://images.unsplash.com/photo-1616486338812-3dadae4b4ce1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80',
+        'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MwxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80',
+        'https://images.unsplash.com/photo-1493809842364-78817add7ffb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80'
+    ];
+
+    let currentImageIndex = 0;
+    const mainImage = document.getElementById('main-image');
+    const thumbnailBtns = document.querySelectorAll('.thumbnail-btn');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    let slideshowInterval; // Variable to hold the interval for automatic slideshow
+
+    // Set up thumbnail click events
+    thumbnailBtns.forEach((btn, index) => {
+        btn.addEventListener('click', () => {
+            currentImageIndex = index;
+            updateMainImage();
+            highlightThumbnail();
+            resetSlideshowInterval(); // Reset interval on manual interaction
+        });
+    });
+
+    // Previous button click
+    prevBtn.addEventListener('click', () => {
+        currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+        updateMainImage();
+        highlightThumbnail();
+        resetSlideshowInterval(); // Reset interval on manual interaction
+    });
+
+    // Next button click
+    nextBtn.addEventListener('click', () => {
+        currentImageIndex = (currentImageIndex + 1) % images.length;
+        updateMainImage();
+        highlightThumbnail();
+        resetSlideshowInterval(); // Reset interval on manual interaction
+    });
+
+    function updateMainImage() {
+        // Add fade effect
+        mainImage.style.opacity = '0';
+        setTimeout(() => {
+            mainImage.src = images[currentImageIndex];
+            mainImage.style.opacity = '1';
+        }, 300); // This duration should match your CSS transition for opacity
+    }
+
+    function highlightThumbnail() {
+        thumbnailBtns.forEach((btn, index) => {
+            if (index === currentImageIndex) {
+                btn.classList.add('border-blue-500'); // Assuming Tailwind CSS for border
+                btn.classList.remove('border-transparent');
+            } else {
+                btn.classList.remove('border-blue-500');
+                btn.classList.add('border-transparent');
+            }
+        });
+    }
+
+    function startSlideshow() {
+        // Clear any existing interval to prevent multiple intervals running
+        clearInterval(slideshowInterval);
+        slideshowInterval = setInterval(() => {
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            updateMainImage();
+            highlightThumbnail();
+        }, 3000); // Change image every 3 seconds (3000 milliseconds)
+    }
+
+    function resetSlideshowInterval() {
+        clearInterval(slideshowInterval); // Clear the current interval
+        startSlideshow(); // Start a new interval
+    }
+
+    // Initialize the slider and start the slideshow
+    updateMainImage(); // Set the initial main image
+    highlightThumbnail(); // Highlight the initial thumbnail
+    startSlideshow(); // Start the automatic slideshow
+
+    // Animation on scroll (completed example)
+    const observerOptions = {
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-in'); // Example: Add a class for animation
+                observer.unobserve(entry.target); // Stop observing once animated
+            }
+        });
+    }, observerOptions);
+
+    // Example: Observe elements you want to animate on scroll
+    // document.querySelectorAll('.fade-in-on-scroll').forEach(element => {
+    //     observer.observe(element);
+    // });
+</script>
+</html>
